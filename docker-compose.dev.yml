@@ -1,0 +1,74 @@
+---
+services:
+  webapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: webapi-api-dev
+    ports:
+      - 5002:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Host=webapidb;Port=5432;Database=webapidb;Username=postgres;Password=postgres
+      - Jwt__Key=12345678901234567890123456789012
+      - Jwt__Issuer=identityAPI
+      - Jwt__Audience=identityAPIUsers
+      - IdentityApiUrl=http://identityapi:5001
+    depends_on:
+      - webapidb
+    networks:
+      - webapi-network
+    volumes:
+      - .:/src
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  webapidb:
+    image: postgres:16
+    container_name: webapi-db-dev
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=webapidb
+    ports:
+      - 5433:5432
+    volumes:
+      - webapi_postgres_data_dev:/var/lib/postgresql/data
+    networks:
+      - webapi-network
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: webapi-pgadmin-dev
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - 8086:80
+    depends_on:
+      - webapidb
+    networks:
+      - webapi-network
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+volumes:
+  webapi_postgres_data_dev:
+
+networks:
+  webapi-network:
+    driver: bridge

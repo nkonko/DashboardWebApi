@@ -36,13 +36,13 @@ namespace WebApi.Persistence
                 {
                     Key = "CompanyName",
                     Value = "AzzDashboard",
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                 },
                 new AppSetting
                 {
                     Key = "SupportEmail",
                     Value = "support@azzdashboard.com",
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                 }
             );
         }

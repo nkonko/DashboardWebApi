@@ -66,8 +66,8 @@ namespace WebApi.Migrations
                 columns: new[] { "key", "created_at", "updated_at", "value" },
                 values: new object[,]
                 {
-                    { "CompanyName", new DateTime(2026, 2, 22, 23, 44, 30, 669, DateTimeKind.Utc).AddTicks(3791), null, "AzzDashboard" },
-                    { "SupportEmail", new DateTime(2026, 2, 22, 23, 44, 30, 669, DateTimeKind.Utc).AddTicks(3939), null, "support@azzdashboard.com" }
+                    { "CompanyName", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "AzzDashboard" },
+                    { "SupportEmail", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "support@azzdashboard.com" }
                 });
 
             migrationBuilder.CreateIndex(

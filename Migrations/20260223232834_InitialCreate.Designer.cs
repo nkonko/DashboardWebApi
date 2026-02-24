@@ -12,7 +12,7 @@ using WebApi.Persistence;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(WebApiDbContext))]
-    [Migration("20260222234431_InitialCreate")]
+    [Migration("20260223232834_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -54,13 +54,13 @@ namespace WebApi.Migrations
                         new
                         {
                             Key = "CompanyName",
-                            CreatedAt = new DateTime(2026, 2, 22, 23, 44, 30, 669, DateTimeKind.Utc).AddTicks(3791),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Value = "AzzDashboard"
                         },
                         new
                         {
                             Key = "SupportEmail",
-                            CreatedAt = new DateTime(2026, 2, 22, 23, 44, 30, 669, DateTimeKind.Utc).AddTicks(3939),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Value = "support@azzdashboard.com"
                         });
                 });
