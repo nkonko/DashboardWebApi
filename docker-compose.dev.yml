@@ -3,7 +3,7 @@ services:
   webapi:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: WebApi.Api/Dockerfile.dev
     container_name: webapi-api-dev
     ports:
       - 5002:8080

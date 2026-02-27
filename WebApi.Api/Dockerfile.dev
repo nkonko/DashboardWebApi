@@ -1,0 +1,14 @@
+# Development container with .NET 10 SDK
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS dev
+WORKDIR /src
+
+# Copy all project files
+COPY . .
+
+# Install dotnet-ef global tool for EF Core commands
+RUN dotnet tool install --global dotnet-ef --version 10.0.0
+ENV PATH="$PATH:/root/.dotnet/tools"
+
+# Use dotnet watch for development
+WORKDIR /src/WebApi.Api
+ENTRYPOINT ["sh", "-c", "echo ''; echo '🚀 WebAPI está iniciando...'; echo '📍 Swagger UI: http://localhost:5002/swagger'; echo '📍 Scalar UI: http://localhost:5002/scalar/v1'; echo '📍 API Base: http://localhost:5002'; echo '🔧 Modo desarrollo con hot-reload activado'; echo ''; dotnet watch run --urls http://+:8080"]
