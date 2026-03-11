@@ -90,7 +90,7 @@ namespace WebApi.Api.Controllers
             {
                 var userName = User.FindFirstValue(ClaimTypes.Name) ?? User.FindFirstValue(ClaimTypes.Email);
                 var flag = await _featureFlagService.CreateAsync(dto, userName);
-                return CreatedAtAction(nameof(GetById), new { id = flag.Id }, flag);
+                return Ok(flag);
             }
             catch (InvalidOperationException ex)
             {
