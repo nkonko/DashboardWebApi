@@ -19,6 +19,9 @@ builder.Services.AddDbContext<WebApiDbContext>(options =>
 // Registro automático de servicios de aplicación
 builder.Services.AddApplicationServices();
 
+// Add memory cache for feature flags
+builder.Services.AddMemoryCache();
+
 // Add services to the container
 builder.Services.AddControllers()
     .AddJsonOptions(options =>

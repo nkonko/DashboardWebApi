@@ -12,6 +12,7 @@ namespace WebApi.Infrastructure.Persistence
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<AppSetting> AppSettings { get; set; }
         public DbSet<PaymentWebhook> PaymentWebhooks { get; set; }
+        public DbSet<FeatureFlag> FeatureFlags { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +30,10 @@ namespace WebApi.Infrastructure.Persistence
 
             modelBuilder.Entity<PaymentWebhook>()
                 .HasIndex(p => p.Processed);
+
+            modelBuilder.Entity<FeatureFlag>()
+                .HasIndex(f => f.Name)
+                .IsUnique();
 
             // Seed de configuraciones iniciales
             modelBuilder.Entity<AppSetting>().HasData(
